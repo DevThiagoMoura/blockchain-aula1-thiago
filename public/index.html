@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registro de Entregas</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <h1>Registro de entregas</h1>
+      <p class="subtitulo">Cada bloco guarda o hash do anterior. Mude um dado antigo e a corrente quebra.</p>
+    </div>
+    <p id="status" class="status" role="status" aria-live="polite">Carregando…</p>
+  </header>
+
+  <main class="conteudo">
+    <section class="painel" aria-labelledby="titulo-form">
+      <h2 id="titulo-form">Nova entrega</h2>
+      <form id="form-entrega" novalidate>
+        <label for="campo-dados">Descrição da entrega</label>
+        <div class="linha-form">
+          <input id="campo-dados" name="dados" type="text" autocomplete="off"
+                 placeholder="Entrega E-005 para Vilhena: em rota"
+                 aria-describedby="contador mensagem-form">
+          <button type="submit">Cadastrar</button>
+        </div>
+        <div class="rodape-form">
+          <p id="mensagem-form" class="mensagem" aria-live="polite"></p>
+          <span id="contador" class="contador">0/80</span>
+        </div>
+      </form>
+    </section>
+
+    <section aria-labelledby="titulo-cadeia">
+      <div class="cabecalho-cadeia">
+        <h2 id="titulo-cadeia">Cadeia <span id="total-blocos" class="total"></span></h2>
+        <button id="botao-reiniciar" class="botao-secundario" type="button">Reiniciar</button>
+      </div>
+      <p class="dica">Experimente: adultere um bloco antigo e depois clique em <strong>Recalcular hash</strong> para ver o elo com o bloco seguinte quebrar.</p>
+      <p id="mensagem-cadeia" class="mensagem" aria-live="polite"></p>
+      <ol id="cadeia" class="cadeia"></ol>
+    </section>
+  </main>
+
+  <template id="modelo-bloco">
+    <li class="bloco">
+      <div class="elo">
+        <span class="elo-icone" aria-hidden="true"></span>
+        <span class="elo-texto"></span>
+      </div>
+      <article class="cartao">
+        <header class="cartao-topo">
+          <h3 class="indice"></h3>
+          <span class="selo"></span>
+        </header>
+        <p class="dados"></p>
+        <form class="form-adulterar" hidden>
+          <label class="rotulo-adulterar">Novos dados (sem validação, como um adulterador faria)</label>
+          <div class="linha-form">
+            <input class="campo-adulterar" name="dados" type="text" autocomplete="off">
+            <button type="submit" class="botao-perigo">Salvar adulteração</button>
+            <button type="button" class="botao-secundario" data-acao="cancelar">Cancelar</button>
+          </div>
+        </form>
+        <dl class="hashes">
+          <div><dt>hash</dt><dd class="hash"></dd></div>
+          <div><dt>hash anterior</dt><dd class="hash-anterior"></dd></div>
+          <div class="linha-recalculado"><dt>hash recalculado</dt><dd class="hash-recalculado divergente"></dd></div>
+        </dl>
+        <div class="acoes">
+          <button type="button" class="botao-perigo" data-acao="adulterar">Adulterar dados</button>
+          <button type="button" class="botao-secundario" data-acao="recalcular">Recalcular hash</button>
+        </div>
+      </article>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

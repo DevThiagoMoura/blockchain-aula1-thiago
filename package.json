@@ -1,0 +1,14 @@
+{
+  "name": "blockchain-aula1-thiago",
+  "version": "1.0.0",
+  "description": "Registro de entregas à prova de adulteração usando hash SHA-256 encadeado",
+  "main": "principal.js",
+  "scripts": {
+    "start": "node servidor.js",
+    "terminal": "node principal.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
